@@ -1,0 +1,157 @@
+guide on unity networking of Tom Weiland
+by: abyza
+
+
+video 1
+
+create the sever using console and visual studio 
+i put mine in drive d under main and under server 
+
+program.cs in the server
+server.cs in the server
+client.cs in the server
+
+
+unity make the project game client
+client.cs
+uimanager.cs
+added text input field and a button
+
+# i ADDED MYSELF TMPRO inputfield inside uimanager.cs
+
+end result: able to display incoming connection on the console in the client able to put in the input field and hit connect nothign happens afetr wards
+
+
+video 2
+
+
+packet.cs in the server
+serversend.cs in the server
+
+clienthandle.cs in the client
+packet.cs in the client
+threadmanager.cs in the client
+
+#I added myself framerate.cs 
+
+clientsend.cs in the client
+
+serverhandle.cs in the server
+threadmanager.cs in the server
+gamelogic.cs in the server
+
+constants.cs in the server
+
+end result: able to send and receive data by using TCP and threads on both client and server
+
+
+video 3
+
+no new sripts added
+
+end result: only add UPD connection 
+
+video 4
+
+
+gamemanager.cs in the client
+playermanager.cs in the client
+playercontroller.cs in the client
+camercontroller.cs in the client
+
+create folder for prefab 
+create folder for materials
+
+end result: we now instantiate a player and it moves. but still 3d movement and there are 2 camera the main one and the camera spawned with the player. I decided to disable the camera in the spawned player since for now the map is as big as the screen only, the movement is only for pc i will add it at video 5 because the disconnections is still not handeled properly, there is also no jump button yet.
+
+video 5
+
+very short just 1 file each to update in client and server
+
+end result: disconnection, but the disconnected players body is still left in the early platers? will be fixed in future video
+
+video 6
+
+create new unity project for the server 
+2 folder for scripts and prefabs
+
+server.cs
+serverhandle.cs
+serversend.cs
+threadmaanger.cs
+
+packet.cs
+player.cs
+client.cs
+constants.cs
+
+networkmanager.cs
+
+all 9 scripts in the server
+
+end result: disconnection works properly?? id didnt do anything just moved the server into unity and for 2d game make the rigid body 2d on both server and client.
+
+### make sure in player settings to enable run in background in both client and server unless it will do nothing if it is not the currently active window.
+
+video 7
+
+
+end result unity server side collision and i change it so it works on 2d rather than using character controler script in unity i use rigid body and rb.velocity
+
+
+video 8 
+
+end result: fixed the problem when players disconnecting 
+
+video 9
+
+end result: i didnt do anything
+
+video 10 
+
+
+end result: i didnt do anything
+
+video 11
+
+end result: fix tcp and udp in portforward connections and other ip
+
+
+setting up connection
+
+step 1 - 6 is sending from client to server
+packet.cs, clientsend.cs on client side
+1 - client side call this function ClientSend.SendMessage();
+2 - add that function on clientsend script
+3 - packet script in clientpackets enum add the function lower case 1st letter
+
+packets.cs, server.cs, serverhandle.cs on server side
+4- server.cs in the server add in initializedserverdata() in packethandlers
+5 - add the packet 
+6 - add function on serverhandle.cs
+
+
+step 7 -12 server to client
+packets.cs, serversend.cs on server side
+7 - from anywhere call serversend.function
+8 - add the function in serversend.cs then choose if it is send udp or tcp and if all or just the 1 client
+9 - add in packet.cs in serverpackets
+
+clienthandle.cs, packet.cs, client.cs
+on client side
+10 -12 same as 4-6 but on client
+
+note: server hosted in unity play mode wont work if the client is available via lan it must be run as a pc standalone build.
+
+if it is available online you can play in my phone using mobile data and i can play in unity editor in the same device as server but have to be 127.0.0.1 ip on the unity editor or 192.168.1.4 since its my local device as well
+
+
+
+
+
+
+
+
+
+
+
